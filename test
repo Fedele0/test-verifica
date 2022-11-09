@@ -1,0 +1,37 @@
+let onSuccess=function (data) {
+    console.log(data);
+    $("img").attr("src",data.message);
+};
+let onError=function () {
+    console.log("qualcosa è andato storto!");
+};
+let onSubmit=function(event){
+    console.log("submit!");
+    event.preventDefault();
+    $.getJSON("https://dog.ceo/api/breed/"+$("#search-dog").val()+"/images/random")
+    .done(onSuccess)
+    .fail(onError);
+}
+$("form").submit(onSubmit);
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" name="form" method="GET">
+        <div>
+            inserisci la razza del cane<input type="text" id="val" name="razza">
+            <input type="submit" value="vai">
+        </div>
+        <img src="" alt="a dog image" width="640px"> 
+    </form>
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
